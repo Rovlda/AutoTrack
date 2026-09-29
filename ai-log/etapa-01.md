@@ -4,7 +4,7 @@
 - Gemini
 
 ## Conversations
-[Link conversație] (Brainstorming for project theme and setting up HTML/CSS Grid)
+(Brainstorming for project theme and setting up HTML/CSS Grid)
 
 ## Key requests
 ### 1. Generating a valid project theme
