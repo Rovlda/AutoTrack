@@ -25,7 +25,7 @@ Open `index.html` in a browser. No build step, no server.
 
 ## Status
 - [x] Stage 1: static mockup
-- [ ] Stage 2: data logic in JavaScript
+- [x] Stage 2: data logic in JavaScript
 
 ## Checklist Etapa 1
 
@@ -39,3 +39,20 @@ Open `index.html` in a browser. No build step, no server.
 | S1-R6 | 2 columns on desktop, 1 under 700px | [style.css#L..](https://github.com/Rovlda/AutoTrack/blob/9b86b8514d5dbeb10cb2575e65fa62226a93c9dd/style.css#L142-L148) | resize < 700px |
 | S1-R7 | visible focus, readable dark theme | [style.css#L..](https://github.com/Rovlda/AutoTrack/blob/9b86b8514d5dbeb10cb2575e65fa62226a93c9dd/style.css#L17-L28) | Tab; dark mode |
 | S1-R8 | commit "Stage 1" pushed | [link-catre-commit-ul-tau](https://github.com/Rovlda/AutoTrack/commit/fdbc15befabdfe96df375cb14aba1be6ca8c09b7) | commit history |
+
+
+
+
+
+
+## Checklist Etapa 2
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S2-R1 | JS file linked, logs on page load | [index.html#L..](link) | open page, F12 |
+| S2-R2 | 3+ items with id, name, state, tag | [interventii.js#L2-L6](link) | read |
+| S2-R3 | list, count, search, add, toggle, delete | [interventii.js#L11-L47](link) | console output |
+| S2-R4 | add rejects empty name and invalid tag | [interventii.js#L74-L75](link) | last 2 console lines |
+| S2-R5 | original array unchanged after add | [interventii.js#L64](link) | console line |
+| S2-R6 | README Stage 2 section + AI log | [README.md](link), [ai-log/etapa-02.md](link) | read |
+| S2-R7 | commit "Stage 2" pushed | [Commit URL](link) | commit history |
