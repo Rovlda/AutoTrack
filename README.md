@@ -49,10 +49,10 @@ Open `index.html` in a browser. No build step, no server.
 
 | ID | Requirement | Where (permalink) | How to check |
 |---|---|---|---|
-| S2-R1 | JS file linked, logs on page load | [index.html#L..](link) | open page, F12 |
-| S2-R2 | 3+ items with id, name, state, tag | [interventii.js#L2-L6](link) | read |
-| S2-R3 | list, count, search, add, toggle, delete | [interventii.js#L11-L47](link) | console output |
-| S2-R4 | add rejects empty name and invalid tag | [interventii.js#L74-L75](link) | last 2 console lines |
-| S2-R5 | original array unchanged after add | [interventii.js#L64](link) | console line |
-| S2-R6 | README Stage 2 section + AI log | [README.md](link), [ai-log/etapa-02.md](link) | read |
-| S2-R7 | commit "Stage 2" pushed | [Commit URL](link) | commit history |
+| S2-R1 | JS file linked, logs on page load | [index.html#L..](https://github.com/Rovlda/AutoTrack/blob/4d9e4cd062ac8c23aa18db609f243ffaae774e96/index.html#L67) | open page, F12 |
+| S2-R2 | 3+ items with id, name, state, tag | [interventii.js#L2-L6](https://github.com/Rovlda/AutoTrack/blob/4d9e4cd062ac8c23aa18db609f243ffaae774e96/interventii.js#L2-L6) | read |
+| S2-R3 | list, count, search, add, toggle, delete | [interventii.js#L11-L47](https://github.com/Rovlda/AutoTrack/blob/4d9e4cd062ac8c23aa18db609f243ffaae774e96/interventii.js#L11-L56) | console output |
+| S2-R4 | add rejects empty name and invalid tag | [interventii.js#L74-L75](https://github.com/Rovlda/AutoTrack/blob/4d9e4cd062ac8c23aa18db609f243ffaae774e96/interventii.js#L76-L77) | last 2 console lines |
+| S2-R5 | original array unchanged after add | [interventii.js#L64](https://github.com/Rovlda/AutoTrack/blob/4d9e4cd062ac8c23aa18db609f243ffaae774e96/interventii.js#L66) | console line |
+| S2-R6 | README Stage 2 section + AI log | [README.md](https://github.com/Rovlda/AutoTrack/blob/main/README.md), [ai-log/etapa-02.md](https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-02.md) | read |
+| S2-R7 | commit "Stage 2" pushed | [Commit URL](https://github.com/Rovlda/AutoTrack/commit/4d9e4cd062ac8c23aa18db609f243ffaae774e96) | commit history |
