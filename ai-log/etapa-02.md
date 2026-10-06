@@ -4,7 +4,7 @@
 - Gemini
 
 ## Conversations
-[Link conversație] (Implementing JS data logic and immutable array methods)
+https://gemini.google.com/app/8997f05ba6bd1949?hl=ro (Implementing JS data logic and immutable array methods)
 
 ## Key requests
 ### 1. JavaScript logic setup
