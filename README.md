@@ -65,10 +65,12 @@ Open `index.html` in a browser. No build step, no server.
 The app now lives in `frontend/`, built with Vite. The data from stage 2 moved into the main component; the list is still printed raw.
 
 ## How to run
-```bash
+```
+bash
 cd frontend
 npm install
 npm run dev
+```
 
 
 
