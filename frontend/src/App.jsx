@@ -1,3 +1,6 @@
+
+import InterventieList from "./components/InterventieList.jsx";
+
 const interventii = [
   { id: 1, titlu: "Segmentare bloc motor și reparație chiuloasă", efectuata: true, tip: "mecanica" },
   { id: 2, titlu: "Instalare cameră marșarier", efectuata: false, tip: "electronica" },
@@ -20,8 +23,7 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Lista mea</h2>
-          {/* Temporar: date brute; componentele apar în Etapa 4 */}
-          <pre>{JSON.stringify(interventii, null, 2)}</pre>
+          <InterventieList interventii={interventii} />
         </section>
       </main>
     </>
