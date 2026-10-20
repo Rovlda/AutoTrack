@@ -1,6 +1,6 @@
 
 import InterventieList from "./components/InterventieList.jsx";
-
+import { CarFront } from "lucide-react";
 const interventii = [
   { id: 1, titlu: "Segmentare bloc motor și reparație chiuloasă", efectuata: true, tip: "mecanica" },
   { id: 2, titlu: "Instalare cameră marșarier", efectuata: false, tip: "electronica" },
@@ -13,7 +13,11 @@ export default function App() {
   return (
     <>
       <header className="app-header">
-        <h1>AutoTrack</h1>
+        {/* Am grupat iconița și titlul */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
+          <CarFront size={40} />
+          <h1 style={{ margin: 0 }}>AutoTrack</h1>
+        </div>
         <p>Gestionează mentenanța și modificările mașinii tale.</p>
         <p className="app-count">
           {interventii.length} intervenții, dintre care {inAsteptare} în așteptare
