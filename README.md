@@ -27,6 +27,7 @@ Open `index.html` in a browser. No build step, no server.
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite si React project
+- [x] Stage 4: components rendered from data
 
 ## Checklist Etapa 1
 
@@ -68,3 +69,18 @@ The app now lives in `frontend/`, built with Vite. The data from stage 2 moved i
 cd frontend
 npm install
 npm run dev
+
+
+
+
+## Checklist Etapa 4
+
+| ID | Requirement | Where (https://github.com/Rovlda/AutoTrack/tree/main/frontend/src/components) | How to check |
+|---|---|---|---|
+| S4-R1 | 2+ components in src/components/ | [frontend/src/components/](https://github.com/Rovlda/AutoTrack/tree/main/frontend/src/components) | open folder |
+| S4-R2 | card receives data through props | [frontend/src/components/InterventieCard.jsx#L4-L16](https://github.com/Rovlda/AutoTrack/blob/9f322cc9644cfab13e78e7ecdcd5ece2fde50679/frontend/src/components/InterventieCard.jsx#L4-L16) | read |
+| S4-R3 | map + key={id}, no console warnings | [frontend/src/components/InterventieList.jsx#L10-L15](https://github.com/Rovlda/AutoTrack/blob/9f322cc9644cfab13e78e7ecdcd5ece2fde50679/frontend/src/components/InterventieList.jsx#L10-L12) | F12, Console |
+| S4-R4 | message for empty list | [frontend/src/components/InterventieList.jsx#L4-L7](https://github.com/Rovlda/AutoTrack/blob/9f322cc9644cfab13e78e7ecdcd5ece2fde50679/frontend/src/components/InterventieList.jsx#L4-L7) | set array to [] |
+| S4-R5 | state changes the card look | [frontend/src/components/InterventieCard.jsx#L6](https://github.com/Rovlda/AutoTrack/blob/9f322cc9644cfab13e78e7ecdcd5ece2fde50679/frontend/src/components/InterventieCard.jsx#L6) | toggle a done flag |
+| S4-R6 | README Stage 4 section + AI log | [README.md](https://github.com/Rovlda/AutoTrack/blob/main/README.md), [ai-log/etapa-04.md](https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-04.md) | read |
+| S4-R7 | commit "Stage 4" pushed | [Commit URL](https://github.com/Rovlda/AutoTrack/commit/9f322cc9644cfab13e78e7ecdcd5ece2fde50679) | commit history |
