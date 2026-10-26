@@ -28,6 +28,7 @@ Open `index.html` in a browser. No build step, no server.
 - [x] Stage 2: data logic in JavaScript
 - [x] Stage 3: Vite si React project
 - [x] Stage 4: components rendered from data
+- [x] Stage 5: local state and events
 
 ## Checklist Etapa 1
 
@@ -86,3 +87,22 @@ npm run dev
 | S4-R5 | state changes the card look | [frontend/src/components/InterventieCard.jsx#L6](https://github.com/Rovlda/AutoTrack/blob/9f322cc9644cfab13e78e7ecdcd5ece2fde50679/frontend/src/components/InterventieCard.jsx#L6) | toggle a done flag |
 | S4-R6 | README Stage 4 section + AI log | [README.md](https://github.com/Rovlda/AutoTrack/blob/main/README.md), [ai-log/etapa-04.md](https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-04.md) | read |
 | S4-R7 | commit "Stage 4" pushed | [Commit URL](https://github.com/Rovlda/AutoTrack/commit/9f322cc9644cfab13e78e7ecdcd5ece2fde50679) | commit history |
+
+
+
+
+## Stage 5: local state and events
+The list lives in React state. Checking and deleting work from the page, and the counters in the header follow automatically. A button in the header switches between light and dark mode. Changes are lost on refresh, which is what stage 6 and stage 10 fix.
+
+## Stage 5 Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S5-R1 | list kept in useState, in App | [https://github.com/Rovlda/AutoTrack/blob/1de30081c49e03e84016f64d136d0e2e1d7811b7/frontend/src/App.jsx#L17] | read |
+| S5-R2 | toggling changes state and card look | [https://github.com/Rovlda/AutoTrack/blob/1de30081c49e03e84016f64d136d0e2e1d7811b7/frontend/src/App.jsx#L21-L25] | click a checkbox |
+| S5-R3 | delete removes the item | [https://github.com/Rovlda/AutoTrack/blob/1de30081c49e03e84016f64d136d0e2e1d7811b7/frontend/src/App.jsx#L28-L30] | click Delete |
+| S5-R4 | header counter derived, not in state | [https://github.com/Rovlda/AutoTrack/blob/1de30081c49e03e84016f64d136d0e2e1d7811b7/frontend/src/App.jsx#L39] | toggle, watch header |
+| S5-R5 | immutable updates (no push, splice, assignment) | [https://github.com/Rovlda/AutoTrack/blob/1de30081c49e03e84016f64d136d0e2e1d7811b7/frontend/src/App.jsx#L23] | read |
+| S5-R6 | light/dark toggle: state + data-theme on html | [https://github.com/Rovlda/AutoTrack/blob/1de30081c49e03e84016f64d136d0e2e1d7811b7/frontend/src/App.jsx#L33-L37] | click the button, both system themes |
+| S5-R7 | no console warnings; README + AI log | [https://github.com/Rovlda/AutoTrack/blob/main/README.md][https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-05.md] | F12, Console |
+| S5-R8 | commit "Stage 5" pushed | [https://github.com/Rovlda/AutoTrack/commit/fcb2d7b86f689a3c32432428b64a8014eff2c803] | commit history |
