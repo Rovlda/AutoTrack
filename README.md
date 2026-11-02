@@ -123,10 +123,10 @@ npm run dev  # terminal 2, http://localhost:5173
 
 | ID | Requirement | Where (permalink) | How to check |
 |---|---|---|---|
-| S6-R1 | npm run api starts, route shows JSON | [package.json#L7](https://github.com/Rovlda/AutoTrack/blob/main/frontend/package.json#L7) | open localhost:3001/interventii |
-| S6-R2 | data no longer in React code | [App.jsx#L11](https://github.com/Rovlda/AutoTrack/blob/main/frontend/src/App.jsx#L11) | read |
-| S6-R3 | loading message while waiting | [App.jsx#L77](https://github.com/Rovlda/AutoTrack/blob/main/frontend/src/App.jsx#L77) | -delay 4000 |
-| S6-R4 | error message when API is down | [App.jsx#L79](https://github.com/Rovlda/AutoTrack/blob/main/frontend/src/App.jsx#L79) | stop npm run api, refresh |
-| S6-R5 | fetch only in api.js, URL from env | [api.js#L5](https://github.com/Rovlda/AutoTrack/blob/main/frontend/src/api.js#L5) | search for fetch |
-| S6-R6 | README Stage 6 section + AI log | [ai-log/etapa-06.md#L1](https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-06.md#L1) | read |
-| S6-R7 | commit "Stage 6" pushed | [link-catre-commit-ul-tau](https://github.com/Rovlda/AutoTrack/commits/main) | commit history |
+| S6-R1 | npm run api starts, route shows JSON | [package.json#L7](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/package.json#L11) | open localhost:3001/interventii |
+| S6-R2 | data no longer in React code | [App.jsx#L11](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L11) | read |
+| S6-R3 | loading message while waiting | [App.jsx#L77](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L72) | -delay 4000 |
+| S6-R4 | error message when API is down | [App.jsx#L79](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L74-L76) | stop npm run api, refresh |
+| S6-R5 | fetch only in api.js, URL from env | [api.js#L5](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/api.js#L5) | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | [ai-log/etapa-06.md#L1](https://github.com/Rovlda/AutoTrack/blob/main/README.md) (https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-06.md)| read |
+| S6-R7 | commit "Stage 6" pushed | (https://github.com/Rovlda/AutoTrack/commit/e596179e77491910c51a240b1c6fc5cdb0bbe038) | commit history |
