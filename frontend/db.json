@@ -1,0 +1,9 @@
+{
+  "interventii": [
+    { "id": 1, "titlu": "Segmentare bloc motor și reparație chiuloasă", "efectuata": true, "tip": "mecanica" },
+    { "id": 2, "titlu": "Instalare cameră marșarier", "efectuata": false, "tip": "electronica" },
+    { "id": 3, "titlu": "Schimb ulei cutie DSG", "efectuata": false, "tip": "mecanica" },
+    { "id": 4, "titlu": "Polish faruri și aplicare folie de protecție", "efectuata": true, "tip": "estetica" },
+    { "id": 5, "titlu": "Înlocuire kit distribuție și pompă de apă", "efectuata": false, "tip": "mecanica" }
+  ]
+}

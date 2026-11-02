@@ -1,35 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InterventieList from "./components/InterventieList.jsx";
 import { CarFront } from "lucide-react";
-
-// Valoarea de pornire
-const INTERVENTII_INITIALE = [
-  { id: 1, titlu: "Segmentare bloc motor și reparație chiuloasă", efectuata: true, tip: "mecanica" },
-  { id: 2, titlu: "Instalare cameră marșarier", efectuata: false, tip: "electronica" },
-  { id: 3, titlu: "Schimb ulei cutie DSG", efectuata: false, tip: "mecanica" }
-];
+import { fetchInterventii } from "./api.js";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [interventii, setInterventii] = useState(INTERVENTII_INITIALE);
+  const [interventii, setInterventii] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [tema, setTema] = useState(temaInitiala);
 
-  // Funcție imutabilă cu map
+  useEffect(() => {
+    let ignore = false;
+    
+    async function load() {
+      try {
+        const data = await fetchInterventii();
+        if (!ignore) setInterventii(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+    
+    load();
+    return () => { ignore = true; };
+  }, []);
+
   function handleToggle(id) {
     setInterventii((prev) =>
       prev.map((i) => (i.id === id ? { ...i, efectuata: !i.efectuata } : i))
     );
   }
 
-  // Funcție imutabilă cu filter
   function handleDelete(id) {
     setInterventii((prev) => prev.filter((i) => i.id !== id));
   }
 
-  // Comutarea temei pe elementul html
   function handleTema() {
     const noua = tema === "dark" ? "light" : "dark";
     setTema(noua);
@@ -41,11 +52,7 @@ export default function App() {
   return (
     <>
       <header className="app-header">
-        <button
-          className="theme-toggle"
-          onClick={handleTema}
-          aria-pressed={tema === "dark"}
-        >
+        <button className="theme-toggle" onClick={handleTema} aria-pressed={tema === "dark"}>
           {tema === "dark" ? "Mod luminos" : "Mod întunecat"}
         </button>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
@@ -61,11 +68,22 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Lista mea</h2>
-          <InterventieList 
-            interventii={interventii} 
-            onToggle={handleToggle} 
-            onDelete={handleDelete} 
-          />
+          
+          {loading && <p className="info">Se încarcă lista de intervenții...</p>}
+          
+          {error && (
+            <p className="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+          
+          {!loading && !error && (
+            <InterventieList 
+              interventii={interventii} 
+              onToggle={handleToggle} 
+              onDelete={handleDelete} 
+            />
+          )}
         </section>
       </main>
     </>
