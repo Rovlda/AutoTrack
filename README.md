@@ -135,14 +135,68 @@ npm run dev  # terminal 2, http://localhost:5173
 
 | ID | Requirement | Where (permalink) | How to check |
 |---|---|---|---|
-| S6-R1 | npm run api starts, route shows JSON | [package.json#L7](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/package.json#L11) | open localhost:3001/interventii |
-| S6-R2 | data no longer in React code | [App.jsx#L11](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L11) | read |
-| S6-R3 | loading message while waiting | [App.jsx#L77](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L72) | -delay 4000 |
-| S6-R4 | error message when API is down | [App.jsx#L79](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L74-L76) | stop npm run api, refresh |
-| S6-R5 | fetch only in api.js, URL from env | [api.js#L5](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/api.js#L5) | search for fetch |
-| S6-R6 | README Stage 6 section + AI log | [ai-log/etapa-06.md#L1](https://github.com/Rovlda/AutoTrack/blob/main/README.md) (https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-06.md)| read |
-| S6-R7 | commit "Stage 6" pushed | (https://github.com/Rovlda/AutoTrack/commit/e596179e77491910c51a240b1c6fc5cdb0bbe038) | commit history |
+| S6-R1 | npm run api starts, route shows JSON | [package.json](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/package.json#L11) | open localhost:3001/interventii |
+| S6-R2 | data no longer in React code | [App.jsx](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L11) | read |
+| S6-R3 | loading message while waiting | [App.jsx](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L72) | run API with --delay 4000 |
+| S6-R4 | error message when API is down | [App.jsx](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/App.jsx#L74-L76) | stop API, refresh |
+| S6-R5 | fetch only in api.js, URL from env | [api.js](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/api.js#L5) | search for fetch |
+| S6-R6 | README Stage 6 section + AI log | [README](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/README.md), [AI log](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/ai-log/etapa-06.md) | read |
+| S6-R7 | commit "Stage 6" pushed | [Stage 6 commit](https://github.com/Rovlda/AutoTrack/commit/e596179e77491910c51a240b1c6fc5cdb0bbe038) | commit history |
 
 ## Stage 7: form and validation
+
+Interventions can be added directly from the page using a controlled form. The title is required, trimmed, and limited to 100 characters. The type must be mecanica, electronica, or estetica.
+
+All changes are saved through the API: POST creates an intervention, PATCH updates its status, and DELETE removes it. The list updates only after the server confirms the operation, using the data returned by the server. Added interventions receive their IDs from the server.
+
+The submit button is disabled while saving, preventing duplicate submissions. The form is cleared only after a successful save. If saving fails, an error is displayed next to the form and the entered values are preserved. Failed updates or deletions display an error while keeping the list visible and unchanged.
+
+The layout displays the form and list in two columns on desktop and one column below 700px. The existing light/dark theme switch is preserved.
+
+The repository includes tw.json at its root and the required data-testid attributes for automated verification.
+
+Run the following commands from frontend/, in two separate terminals:
+
+```bash
+npm run api  # terminal 1, http://localhost:3001
+npm run dev  # terminal 2, http://localhost:5173
+```
+
+To test the pending state, stop the API and restart it with a delay:
+
+```bash
+npm run api -- --delay 3000
+```
+
+Build and code checks:
+
+```bash
+npm run build
+npm run lint
+```
+
+Manual checks:
+- Submit an empty or whitespace-only title: an inline error appears and no POST request is sent.
+- Submit a title longer than 100 characters: validation prevents submission.
+- Add an intervention and refresh: the intervention remains in the list.
+- Toggle an intervention and refresh: its status is preserved.
+- Delete an intervention and refresh: it remains deleted.
+- Stop the API after loading the page and submit: the error appears and the form values remain.
+- With the API stopped, attempt to toggle or delete: an error appears and the item remains unchanged.
+- Restart the API and retry: the operation succeeds.
+- With a delayed response, verify that the submit button is disabled and the form clears only after success.
+
+## Stage 7 Checklist
+
+| ID | Requirement | Where (permalink) | How to check |
+|---|---|---|---|
+| S7-R1 | controlled form: value + onChange on every field | [InterventieForm.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/components/InterventieForm.jsx) | inspect the title input and type select |
+| S7-R2 | empty title shows an error, nothing is sent | [InterventieForm.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/components/InterventieForm.jsx) | submit an empty or whitespace-only title; watch Network |
+| S7-R3 | added item shows in the list and survives refresh | [App.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/App.jsx), [api.js](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/api.js) | add an intervention, refresh |
+| S7-R4 | toggle and delete survive refresh | [App.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/App.jsx), [api.js](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/api.js) | toggle, refresh; delete, refresh |
+| S7-R5 | button disabled while sending, form cleared only on success | [InterventieForm.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/components/InterventieForm.jsx) | run API with --delay 3000; stop API and submit |
+| S7-R6 | tw.json and required data-testid attributes | [tw.json](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/tw.json), [InterventieForm.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/components/InterventieForm.jsx), [InterventieCard.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/components/InterventieCard.jsx), [InterventieList.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/components/InterventieList.jsx), [App.jsx](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/frontend/src/App.jsx) | inspect tw.json; check data-testid attributes in the browser |
+| S7-R7 | README Stage 7 section + AI log | [README.md](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/README.md), [ai-log/etapa-07.md](https://github.com/Rovlda/AutoTrack/blob/SHA_ETAPA7/ai-log/etapa-07.md) | read |
+| S7-R8 | commit "Stage 7" pushed | [Stage 7 commit](https://github.com/Rovlda/AutoTrack/commit/SHA_ETAPA7) | commit history |
 
 
