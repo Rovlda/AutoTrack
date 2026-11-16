@@ -21,7 +21,18 @@ Used for: Generating CSS Grid layout, brainstorming the data model, formatting s
 Details per stage: see the `ai-log/` folder.
 
 ## How to run
-Open `index.html` in a browser. No build step, no server.
+Aplicația React se rulează din `frontend/`. Instalează Node.js compatibil
+cu Vite 8 (minimum 22.12 pe ramura Node 22), apoi:
+
+```sh
+cd frontend
+npm ci
+npm run api
+```
+
+În al doilea terminal, tot din `frontend/`: `npm run dev`.
+Deschide adresa afișată de Vite. Verificări: `npm run build` și `npm run lint`.
+Versiunea HTML istorică se află în `mockup/`.
 
 ## Status
 - [x] Stage 1: static mockup
@@ -30,6 +41,8 @@ Open `index.html` in a browser. No build step, no server.
 - [x] Stage 4: components rendered from data
 - [x] Stage 5: local state and events
 - [x] Stage 6: data from a mock API
+- [x] Stage 7: form and validation
+- [ ] Stage 8: routing and detail page
 
 ## Checklist Etapa 1
 
@@ -67,10 +80,9 @@ Open `index.html` in a browser. No build step, no server.
 The app now lives in `frontend/`, built with Vite. The data from stage 2 moved into the main component; the list is still printed raw.
 
 ## How to run
-```
-bash
+```sh
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
@@ -93,7 +105,7 @@ npm run dev
 
 
 ## Stage 5: local state and events
-The list lives in React state. Checking and deleting work from the page, and the counters in the header follow automatically. A button in the header switches between light and dark mode. Changes are lost on refresh, which is what stage 6 and stage 10 fix.
+The list lives in React state. Checking and deleting work from the page, and the counters in the header follow automatically. A button in the header switches between light and dark mode. At Stage 5, changes were lost on refresh. Stage 7 now persists add, toggle and delete through the API.
 
 ## Stage 5 Checklist
 
@@ -130,3 +142,7 @@ npm run dev  # terminal 2, http://localhost:5173
 | S6-R5 | fetch only in api.js, URL from env | [api.js#L5](https://github.com/Rovlda/AutoTrack/blob/e596179e77491910c51a240b1c6fc5cdb0bbe038/frontend/src/api.js#L5) | search for fetch |
 | S6-R6 | README Stage 6 section + AI log | [ai-log/etapa-06.md#L1](https://github.com/Rovlda/AutoTrack/blob/main/README.md) (https://github.com/Rovlda/AutoTrack/blob/main/ai-log/etapa-06.md)| read |
 | S6-R7 | commit "Stage 6" pushed | (https://github.com/Rovlda/AutoTrack/commit/e596179e77491910c51a240b1c6fc5cdb0bbe038) | commit history |
+
+## Stage 7: form and validation
+
+

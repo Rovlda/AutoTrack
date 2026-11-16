@@ -95,7 +95,7 @@ body::before {
   margin: 24px auto;
   padding: 0 16px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   gap: 24px;
   align-items: start;
 }
@@ -164,4 +164,30 @@ body::before {
   border-radius: 8px;
   padding: 10px 12px;
   margin-bottom: 16px;
+}
+/* Etapa 7: formular controlat și aspect adaptat telefoanelor. */
+.panel { min-width: 0; }
+.interventie-form { display: grid; gap: 12px; }
+.interventie-form label { font-weight: 600; }
+.interventie-form input, .interventie-form select {
+  width: 100%; min-width: 0; padding: 10px 12px;
+  border: 1px solid var(--btn-border); border-radius: 8px;
+  background: var(--bg-color); color: var(--text-color); font: inherit;
+}
+.interventie-form small { line-height: 1.5; }
+.interventie-form button {
+  background: var(--header-bg); color: white; border: 0;
+  border-radius: 8px; padding: 12px; font: inherit; cursor: pointer;
+}
+button:disabled, input:disabled, select:disabled { opacity: 0.6; cursor: not-allowed; }
+.interventie-form [aria-invalid="true"] { border: 2px solid var(--btn-border); }
+:is(button, input, select):focus-visible { outline: 3px solid var(--btn-border); outline-offset: 3px; }
+.item-card { gap: 12px; flex-wrap: wrap; }
+.item-main { min-width: 0; }
+.item-main > div { min-width: 0; overflow-wrap: anywhere; }
+.error { color: var(--text-color); }
+@media (max-width: 700px) {
+  .container { grid-template-columns: 1fr; }
+  .app-header { padding-top: 60px; }
+  .panel { padding: 16px; }
 }

@@ -1,8 +1,8 @@
 import InterventieCard from "./InterventieCard.jsx";
 
-export default function InterventieList({ interventii, onToggle, onDelete }) {
+export default function InterventieList({ interventii, onToggle, onDelete, busyIds = [] }) {
     if (interventii.length === 0) {
-        return <p className="empty">Nu există nicio intervenție înregistrată.</p>;
+        return <p className="empty" data-testid="empty">Nu există nicio intervenție înregistrată.</p>;
     }
 
     return (
@@ -13,6 +13,7 @@ export default function InterventieList({ interventii, onToggle, onDelete }) {
                     interventie={interventie} 
                     onToggle={onToggle}
                     onDelete={onDelete}
+                    busy={busyIds.includes(interventie.id)}
                 />
             ))}
         </ul>

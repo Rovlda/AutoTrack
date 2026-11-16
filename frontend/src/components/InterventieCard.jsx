@@ -6,20 +6,22 @@ const ETICHETE_TIP = {
     estetica: { text: "Estetică", Icon: Sparkles } 
 };
 
-export default function InterventieCard({ interventie, onToggle, onDelete }) {
+export default function InterventieCard({ interventie, onToggle, onDelete, busy = false }) {
     const IconitaTip = ETICHETE_TIP[interventie.tip].Icon;
 
     return (
-        <li className={interventie.efectuata ? "item-card done" : "item-card"}>
+        <li data-testid="item" data-id={interventie.id} aria-busy={busy} className={interventie.efectuata ? "item-card done" : "item-card"}>
             <label className="item-main" style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', flex: 1 }}>
                 <input 
-                    type="checkbox" 
+                    type="checkbox"
+                    data-testid="item-toggle"
+                    disabled={busy} 
                     checked={interventie.efectuata}
                     onChange={() => onToggle(interventie.id)}
                     style={{ width: '18px', height: '18px', accentColor: '#d32f2f', cursor: 'pointer' }}
                 />
                 <div>
-                    <h3 style={{ marginBottom: '6px' }}>{interventie.titlu}</h3>
+                    <h3 data-testid="item-title" style={{ marginBottom: '6px' }}>{interventie.titlu}</h3>
                     <span className={`badge badge-${interventie.tip}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
                         <IconitaTip size={14} />
                         {ETICHETE_TIP[interventie.tip].text}
@@ -32,7 +34,10 @@ export default function InterventieCard({ interventie, onToggle, onDelete }) {
                     {interventie.efectuata ? <CheckCircle2 size={18} color="#4caf50" /> : <Circle size={18} color="#a0a0a0" />}
                 </span>
                 <button 
-                    className="btn-danger" 
+                    className="btn-danger"
+                    type="button"
+                    data-testid="item-delete"
+                    disabled={busy} 
                     onClick={() => onDelete(interventie.id)}
                     aria-label={`Șterge ${interventie.titlu}`}
                 >
