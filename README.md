@@ -16,7 +16,7 @@ Sample data used across all stages:
 3. Schimb ulei cutie DSG, active, Mechanics
 
 ## AI usage
-Tools: ChatGPT, Gemini
+Tools: ChatGPT, Gemini, OpenAI Codex
 Used for: Generating CSS Grid layout, brainstorming the data model, formatting semantic HTML.
 Details per stage: see the `ai-log/` folder.
 
@@ -42,7 +42,8 @@ Versiunea HTML istorică se află în `mockup/`.
 - [x] Stage 5: local state and events
 - [x] Stage 6: data from a mock API
 - [x] Stage 7: form and validation
-- [ ] Stage 8: routing and detail page
+- [x] Stage 8: routing and detail page 
+- [ ] Stage 9: own backend with Express
 
 ## Checklist Etapa 1
 
@@ -200,3 +201,71 @@ Manual checks:
 | S7-R8 | commit "Stage 7" pushed | [Stage 7 commit](https://github.com/Rovlda/AutoTrack/commit/9728cb5161fcdaec3577bed18d07263a94d9ec1d) | commit history |
 
 
+
+
+## Stage 8: routing and detail page
+
+React Router provides the intervention list at `/`, a detail page at
+`/interventii/:id`, an about page at `/despre`, and a catch-all 404 page.
+The detail route uses the resource name from `tw.json` exactly.
+
+`BrowserRouter` wraps the app in `main.jsx`. `App.jsx` contains the route map;
+`Layout` provides the shared header, `NavLink` navigation, `Outlet`, theme switch
+and footer. Internal page navigation uses `Link`/`NavLink`, so it does not reload
+the HTML document. The intervention counter now belongs to the list page.
+
+`InterventieDetaliuPage` reads the id with `useParams` and calls
+`fetchInterventie(id)` in `api.js`, requesting only `/interventii/<id>`.
+The page displays loading, success, missing-item (HTTP 404), and connection-error
+states. Requests are cancelled when the id changes or the page unmounts, and
+responses are associated with their requested id so stale details are hidden.
+
+The detail page also displays `sistem` and `descriere`. The five original entries
+retain their ids, titles, types and statuses. Their new descriptions are demo
+metadata inferred from their titles, not additional maintenance records. Items
+created through the existing form can omit these fields; the detail page then
+shows explicit fallback text.
+
+Each UI component and page has an adjacent CSS Module. `index.css` contains
+only theme variables, base styles and shared classes. `constants.js` centralizes
+the intervention types and labels. The existing logo, icons, red theme, dark mode,
+responsive layout and server-confirmed CRUD operations are preserved.
+
+The Stage 7 test markers remain; `item-title` becomes `item-link` as required by
+Stage 8. New markers: `nav`, `detail`, `detail-title`, `not-found`, and the detail
+page's `loading`/`error` messages.
+
+### Run and verify
+
+From `frontend/`, use `npm ci` once, then `npm run api` and `npm run dev` in two
+separate terminals. Run `npm run build` and `npm run lint` for code checks.
+For the built app, use `npm run preview` while the API is running.
+
+Test `/`, `/interventii/1`, `/interventii/999999`, `/despre` and `/ceva`.
+Check browser Back/Forward, refresh on a detail route, and the Network tab:
+navigation should produce API requests without new document requests.
+Vite supports direct route refresh; production hosting will need an SPA fallback
+to `index.html` (the later deployment stage).
+
+Validation performed on 24 November 2026: clean dependency install, production
+build, ESLint and 31 browser checks passed. Browser checks used the compiled app
+and a separate test database. See [AI log](ai-log/etapa-08.md).
+
+Reference: [React Router declarative routing](https://reactrouter.com/start/declarative/routing).
+
+### Stage 8 Checklist
+
+The source links below work in the repository. After publishing Stage 8,
+replace them with permalinks to the implementation commit and publish the
+checklist update separately. S8-R8 is pending publication.
+
+| ID | Requirement | Where | How to check |
+|---|---|---|---|
+| S8-R1 | Header navigation changes page without reload | [App](frontend/src/App.jsx), [Layout](frontend/src/components/Layout.jsx) | Click navigation links; no new document in Network |
+| S8-R2 | Item title opens its detail page | [Card](frontend/src/components/InterventieCard.jsx), [Detail](frontend/src/pages/InterventieDetaliuPage.jsx) | Click a title; check matching id and title |
+| S8-R3 | Detail refresh works; missing id shows error | [Detail](frontend/src/pages/InterventieDetaliuPage.jsx), [API](frontend/src/api.js) | Refresh /interventii/1; open /interventii/999999 |
+| S8-R4 | Unknown URL shows application 404 | [App](frontend/src/App.jsx), [NotFound](frontend/src/pages/NotFoundPage.jsx) | Open /ceva |
+| S8-R5 | Adjacent CSS Modules; only shared global styles | [Components](frontend/src/components), [Pages](frontend/src/pages), [Global CSS](frontend/src/index.css) | Inspect imports and generated classes |
+| S8-R6 | Stage 7/8 test markers; resource-matching detail route | [tw.json](tw.json), [Layout](frontend/src/components/Layout.jsx), [Card](frontend/src/components/InterventieCard.jsx), [Detail](frontend/src/pages/InterventieDetaliuPage.jsx) | Inspect data-testid; open /interventii/1 |
+| S8-R7 | README Stage 8 section and AI log | [README](README.md#stage-8-routing-and-detail-page), [AI log](ai-log/etapa-08.md) | Read |
+| S8-R8 | Stage 8 implementation commit pushed | Pending publication; no commit URL exists yet | Publish implementation, then add real permalinks in a separate checklist commit |

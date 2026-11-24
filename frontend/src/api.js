@@ -6,7 +6,11 @@ async function request(path, options = {}) {
     ...options,
     headers: { "Content-Type": "application/json", ...options.headers },
   });
-  if (!res.ok) throw new Error(`Eroare server: ${res.status}`);
+  if (!res.ok) {
+    const error = new Error(`Eroare server: ${res.status}`);
+    error.status = res.status;
+    throw error;
+  }
   return res.status === 204 ? null : res.json();
 }
 
@@ -28,4 +32,8 @@ export function updateInterventie(id, changes) {
 
 export function deleteInterventie(id) {
   return request(`/interventii/${encodeURIComponent(id)}`, { method: "DELETE" });
+}
+
+export function fetchInterventie(id, options = {}) {
+  return request(`/interventii/${encodeURIComponent(id)}`, options);
 }

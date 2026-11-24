@@ -1,0 +1,5 @@
+.form { display: grid; gap: 12px; }
+.form label { font-weight: 600; }
+.form input, .form select { width: 100%; min-width: 0; padding: 10px 12px; border: 1px solid var(--btn-border); border-radius: 8px; background: var(--bg-color); color: var(--text-color); font: inherit; }
+.form small { line-height: 1.5; }
+.form [aria-invalid="true"] { border: 2px solid var(--btn-border); }

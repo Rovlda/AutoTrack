@@ -1,11 +1,7 @@
 import { useRef, useState } from "react";
 
-const TIPURI = [
-  { value: "mecanica", label: "Mecanică" },
-  { value: "electronica", label: "Electronică" },
-  { value: "estetica", label: "Estetică" },
-];
-const TITLU_MAX = 100;
+import { TIPURI, TITLU_MAX } from "../constants.js";
+import styles from "./InterventieForm.module.css";
 
 export default function InterventieForm({ onAdd, disabled = false }) {
   const [titlu, setTitlu] = useState("");
@@ -51,7 +47,7 @@ export default function InterventieForm({ onAdd, disabled = false }) {
   }
 
   return (
-    <form className="interventie-form" onSubmit={handleSubmit} noValidate
+    <form className={styles.form} onSubmit={handleSubmit} noValidate
       data-testid="form" aria-busy={trimite}>
       <label htmlFor="interventie-titlu">Titlul intervenției</label>
       <input id="interventie-titlu" type="text" value={titlu}
@@ -72,7 +68,7 @@ export default function InterventieForm({ onAdd, disabled = false }) {
       </select>
       {eroare && <p id="form-error" className="error" role="alert"
         data-testid="form-error">{eroare}</p>}
-      <button type="submit" disabled={trimite || disabled} data-testid="form-submit">
+      <button className="btn" type="submit" disabled={trimite || disabled} data-testid="form-submit">
         {trimite ? "Se salvează..." : "Adaugă intervenția"}
       </button>
     </form>

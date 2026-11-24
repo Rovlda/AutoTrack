@@ -1,3 +1,4 @@
+import styles from "./InterventieList.module.css";
 import InterventieCard from "./InterventieCard.jsx";
 
 export default function InterventieList({ interventii, onToggle, onDelete, busyIds = [] }) {
@@ -6,7 +7,7 @@ export default function InterventieList({ interventii, onToggle, onDelete, busyI
     }
 
     return (
-        <ul className="item-list">
+        <ul className={styles.list}>
             {interventii.map((interventie) => (
                 <InterventieCard 
                     key={interventie.id} 

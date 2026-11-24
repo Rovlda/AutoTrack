@@ -1,0 +1,2 @@
+.about { max-width: 760px; margin: 0 auto; line-height: 1.7; }
+.about p + p { margin-top: 16px; }

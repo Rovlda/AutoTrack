@@ -4,31 +4,41 @@
       "id": 1,
       "titlu": "Segmentare bloc motor și reparație chiuloasă",
       "efectuata": true,
-      "tip": "mecanica"
+      "tip": "mecanica",
+      "sistem": "Motor",
+      "descriere": "Intervenție asupra blocului motor și a chiuloasei."
     },
     {
       "id": 2,
       "titlu": "Instalare cameră marșarier",
       "efectuata": true,
-      "tip": "electronica"
+      "tip": "electronica",
+      "sistem": "Sistem electric și vizibilitate",
+      "descriere": "Montarea unei camere pentru vizibilitate în timpul manevrelor de mers înapoi."
     },
     {
       "id": 3,
       "titlu": "Schimb ulei cutie DSG",
       "efectuata": false,
-      "tip": "mecanica"
+      "tip": "mecanica",
+      "sistem": "Transmisie",
+      "descriere": "Operație de mentenanță a cutiei de viteze DSG: schimbarea uleiului."
     },
     {
       "id": 4,
       "titlu": "Polish faruri și aplicare folie de protecție",
       "efectuata": true,
-      "tip": "estetica"
+      "tip": "estetica",
+      "sistem": "Exterior și iluminare",
+      "descriere": "Recondiționarea suprafeței farurilor prin polish și aplicarea unei folii de protecție."
     },
     {
       "id": 5,
       "titlu": "Înlocuire kit distribuție și pompă de apă",
       "efectuata": false,
-      "tip": "mecanica"
+      "tip": "mecanica",
+      "sistem": "Distribuție și răcire",
+      "descriere": "Înlocuirea kitului de distribuție împreună cu pompa de apă."
     }
   ]
 }

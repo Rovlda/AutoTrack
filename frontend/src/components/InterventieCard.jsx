@@ -1,49 +1,35 @@
+import { Link } from "react-router-dom";
 import { Wrench, Zap, Sparkles, CheckCircle2, Circle } from "lucide-react";
+import { ETICHETE_TIP } from "../constants.js";
+import styles from "./InterventieCard.module.css";
 
-const ETICHETE_TIP = { 
-    mecanica: { text: "Mecanică", Icon: Wrench }, 
-    electronica: { text: "Electronică", Icon: Zap }, 
-    estetica: { text: "Estetică", Icon: Sparkles } 
-};
+const ICONITE_TIP = { mecanica: Wrench, electronica: Zap, estetica: Sparkles };
 
 export default function InterventieCard({ interventie, onToggle, onDelete, busy = false }) {
-    const IconitaTip = ETICHETE_TIP[interventie.tip].Icon;
-
-    return (
-        <li data-testid="item" data-id={interventie.id} aria-busy={busy} className={interventie.efectuata ? "item-card done" : "item-card"}>
-            <label className="item-main" style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', flex: 1 }}>
-                <input 
-                    type="checkbox"
-                    data-testid="item-toggle"
-                    disabled={busy} 
-                    checked={interventie.efectuata}
-                    onChange={() => onToggle(interventie.id)}
-                    style={{ width: '18px', height: '18px', accentColor: '#d32f2f', cursor: 'pointer' }}
-                />
-                <div>
-                    <h3 data-testid="item-title" style={{ marginBottom: '6px' }}>{interventie.titlu}</h3>
-                    <span className={`badge badge-${interventie.tip}`} style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                        <IconitaTip size={14} />
-                        {ETICHETE_TIP[interventie.tip].text}
-                    </span>
-                </div>
-            </label>
-            
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                <span className="status" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    {interventie.efectuata ? <CheckCircle2 size={18} color="#4caf50" /> : <Circle size={18} color="#a0a0a0" />}
-                </span>
-                <button 
-                    className="btn-danger"
-                    type="button"
-                    data-testid="item-delete"
-                    disabled={busy} 
-                    onClick={() => onDelete(interventie.id)}
-                    aria-label={`Șterge ${interventie.titlu}`}
-                >
-                    Șterge
-                </button>
-            </div>
-        </li>
-    );
+  const IconitaTip = ICONITE_TIP[interventie.tip] ?? Wrench;
+  return (
+    <li data-testid="item" data-id={interventie.id} aria-busy={busy}
+      className={interventie.efectuata ? `${styles.card} ${styles.done}` : styles.card}>
+      <div className={styles.main}>
+        <input type="checkbox" data-testid="item-toggle" disabled={busy}
+          checked={interventie.efectuata} onChange={() => onToggle(interventie.id)}
+          aria-label={`Marchează ${interventie.titlu}`} />
+        <div>
+          <h3><Link to={`/interventii/${encodeURIComponent(interventie.id)}`} className={styles.title} data-testid="item-link">
+            {interventie.titlu}
+          </Link></h3>
+          <span className={`badge badge-${interventie.tip}`}>
+            <IconitaTip size={14} aria-hidden="true" />{ETICHETE_TIP[interventie.tip] ?? interventie.tip}
+          </span>
+        </div>
+      </div>
+      <div className={styles.actions}>
+        <span className={styles.status} role="img" aria-label={interventie.efectuata ? "Efectuată" : "În așteptare"}>
+          {interventie.efectuata ? <CheckCircle2 size={18} /> : <Circle size={18} />}
+        </span>
+        <button className="btn-danger" type="button" data-testid="item-delete" disabled={busy}
+          onClick={() => onDelete(interventie.id)} aria-label={`Șterge ${interventie.titlu}`}>Șterge</button>
+      </div>
+    </li>
+  );
 }
